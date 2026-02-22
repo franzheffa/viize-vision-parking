@@ -34,66 +34,67 @@ model User {
   createdAt DateTime @default(now())
 
   reservations Reservation[]
-  managedLots  ParkingLot[] @relation("LotManagers")
+  managedLots  ParkingLot[]  @relation("LotManagers")
   wallet       Wallet?
 }
 
 model ParkingLot {
-  id          String   @id @default(cuid())
-  name        String
-  address     String?
-  city        String?
-  country     String?
-  currency    String   @default("CAD")
+  id       String  @id @default(cuid())
+  name     String
+  address  String?
+  city     String?
+  country  String?
+  currency String  @default("CAD")
 
-  managerShareBps     Int @default(9000) // 90.00%
-  driverCashbackBps   Int @default(500)  // 5.00%
-  platformFeeBps      Int @default(500)  // 5.00% (Buttertech)
+  managerShareBps   Int @default(9000) // 90.00%
+  driverCashbackBps Int @default(500) // 5.00%
+  platformFeeBps    Int @default(500) // 5.00% (Buttertech)
 
-  baseRateCents        Int @default(400) // 4.00 / hour
-  evPremiumPct         Int @default(20)  // +20%
-  surgeMaxPct          Int @default(150) // up to +150%
-  targetOccupancyPct   Int @default(80)  // target 80%
+  baseRateCents      Int @default(400) // 4.00 / hour
+  evPremiumPct       Int @default(20) // +20%
+  surgeMaxPct        Int @default(150) // up to +150%
+  targetOccupancyPct Int @default(80) // target 80%
 
-  spots       ParkingSpot[]
-  managers    User[] @relation("LotManagers")
+  spots    ParkingSpot[]
+  managers User[]        @relation("LotManagers")
 
-  createdAt DateTime @default(now())
+  createdAt   DateTime      @default(now())
+  Reservation Reservation[]
 }
 
 model ParkingSpot {
-  id          String   @id @default(cuid())
-  lotId       String
-  lot         ParkingLot @relation(fields: [lotId], references: [id], onDelete: Cascade)
+  id    String     @id @default(cuid())
+  lotId String
+  lot   ParkingLot @relation(fields: [lotId], references: [id], onDelete: Cascade)
 
-  label       String
-  type        SpotType   @default(STANDARD)
-  isOccupied  Boolean    @default(false)
-  isReserved  Boolean    @default(false)
+  label      String
+  type       SpotType @default(STANDARD)
+  isOccupied Boolean  @default(false)
+  isReserved Boolean  @default(false)
 
   externalRef String?
 
   reservations Reservation[]
-  updatedAt DateTime @updatedAt
+  updatedAt    DateTime      @updatedAt
 
   @@index([lotId, type, isOccupied, isReserved])
 }
 
 model Reservation {
-  id          String   @id @default(cuid())
-  userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  lotId       String
-  lot         ParkingLot @relation(fields: [lotId], references: [id], onDelete: Cascade)
+  lotId String
+  lot   ParkingLot @relation(fields: [lotId], references: [id], onDelete: Cascade)
 
-  spotId      String?
-  spot        ParkingSpot? @relation(fields: [spotId], references: [id])
+  spotId String?
+  spot   ParkingSpot? @relation(fields: [spotId], references: [id])
 
-  status      ReservationStatus @default(PENDING)
-  startAt     DateTime
-  endAt       DateTime
-  createdAt   DateTime @default(now())
+  status    ReservationStatus @default(PENDING)
+  startAt   DateTime
+  endAt     DateTime
+  createdAt DateTime          @default(now())
 
   hourlyRateCents Int
   totalCents      Int
