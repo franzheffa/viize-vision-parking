@@ -7,111 +7,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Role {
-  USER
-  MANAGER
-  ADMIN
-}
-
-enum SpotType {
-  STANDARD
-  EV
-}
-
-enum ReservationStatus {
-  PENDING
-  CONFIRMED
-  CANCELLED
-  COMPLETED
-}
-
-model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  password  String
-  role      Role     @default(USER)
-  name      String?
-  createdAt DateTime @default(now())
-
-  reservations Reservation[]
-  managedLots  ParkingLot[]  @relation("LotManagers")
-  wallet       Wallet?
-}
-
-model ParkingLot {
-  id       String  @id @default(cuid())
-  name     String
-  address  String?
-  city     String?
-  country  String?
-  currency String  @default("CAD")
-
-  managerShareBps   Int @default(9000) // 90.00%
-  driverCashbackBps Int @default(500) // 5.00%
-  platformFeeBps    Int @default(500) // 5.00% (Buttertech)
-
-  baseRateCents      Int @default(400) // 4.00 / hour
-  evPremiumPct       Int @default(20) // +20%
-  surgeMaxPct        Int @default(150) // up to +150%
-  targetOccupancyPct Int @default(80) // target 80%
-
-  spots    ParkingSpot[]
-  managers User[]        @relation("LotManagers")
-
-  createdAt   DateTime      @default(now())
-  Reservation Reservation[]
-}
-
 model ParkingSpot {
-  id    String     @id @default(cuid())
-  lotId String
-  lot   ParkingLot @relation(fields: [lotId], references: [id], onDelete: Cascade)
-
-  label      String
-  type       SpotType @default(STANDARD)
-  isOccupied Boolean  @default(false)
-  isReserved Boolean  @default(false)
-
-  externalRef String?
-
+  id        String   @id @default(cuid())
+  number    String   @unique
+  type      String   
+  status    String   @default("AVAILABLE")
+  price     Float
   reservations Reservation[]
-  updatedAt    DateTime      @updatedAt
-
-  @@index([lotId, type, isOccupied, isReserved])
 }
 
 model Reservation {
-  id     String @id @default(cuid())
-  userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  lotId String
-  lot   ParkingLot @relation(fields: [lotId], references: [id], onDelete: Cascade)
-
-  spotId String?
-  spot   ParkingSpot? @relation(fields: [spotId], references: [id])
-
-  status    ReservationStatus @default(PENDING)
-  startAt   DateTime
-  endAt     DateTime
-  createdAt DateTime          @default(now())
-
-  hourlyRateCents Int
-  totalCents      Int
-  currency        String
-
-  managerAmountCents  Int
-  driverCashbackCents Int
-  platformFeeCents    Int
-
-  @@index([lotId, status, startAt])
-}
-
-model Wallet {
-  id           String   @id @default(cuid())
-  userId       String   @unique
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  balanceCents Int      @default(0)
-  currency     String   @default("CAD")
-  updatedAt    DateTime @updatedAt
+  id          String      @id @default(cuid())
+  spotId      String
+  spot        ParkingSpot @relation(fields: [spotId], references: [id])
+  userEmail   String
+  startTime   DateTime    @default(now())
+  totalAmount Float
 }
