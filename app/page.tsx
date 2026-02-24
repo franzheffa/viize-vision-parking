@@ -1,22 +1,25 @@
-import Link from 'next/link';
-
-export default function Home() {
+export default function LandingPage() {
   return (
-    <main className="min-h-screen bg-[#4F46E5] flex flex-col items-center justify-center p-4">
-      <div className="flex flex-col items-center max-w-md w-full text-center space-y-8">
-        <div className="bg-white/20 p-6 rounded-3xl mb-4">
-          <svg className="w-16 h-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+    <div className="min-h-screen bg-white flex flex-col items-center justify-center p-6 text-center">
+      <div className="max-w-md w-full space-y-8">
+        <div className="flex justify-center">
+          <svg className="w-24 h-24 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3" />
           </svg>
         </div>
         
-        <h1 className="text-6xl font-black text-white tracking-tighter italic">VIIZE VISION</h1>
-        <p className="text-white/80 text-lg font-medium">L'IA au service du stationnement urbain.</p>
-        
-        <Link href="/reserve" className="w-full bg-white text-[#4F46E5] py-5 rounded-2xl text-xl font-bold hover:bg-opacity-90 transition-all shadow-xl">
-          ENTRER DANS L'INTERFACE
-        </Link>
+        <div className="space-y-2">
+          <h1 className="text-5xl font-black tracking-tighter uppercase italic text-black">VIIZE VISION</h1>
+          <p className="text-slate-500 font-medium">L'IA au service du stationnement urbain.</p>
+        </div>
+
+        <a 
+          href="/dashboard" 
+          className="inline-block w-full py-4 bg-black text-white rounded-2xl font-bold hover:bg-zinc-800 transition-all uppercase tracking-widest no-underline"
+        >
+          Entrer dans l'interface
+        </a>
       </div>
-    </main>
-  );
+    </div>
+  )
 }
