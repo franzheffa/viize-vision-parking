@@ -1,87 +1,49 @@
-import { Car, ShieldCheck, Zap, ChevronRight, Crown } from 'lucide-react'
+import { ShieldCheck, Zap, ChevronRight, Crown, Car } from 'lucide-react'
 
 export default function LandingPage() {
   return (
-    <div style={{ 
-      backgroundColor: '#ffffff', 
-      minHeight: '100vh', 
-      display: 'flex', 
-      flexDirection: 'column', 
-      alignItems: 'center', 
-      justifyContent: 'center', 
-      padding: '20px', 
-      fontFamily: 'system-ui, sans-serif',
-      backgroundImage: 'radial-gradient(circle at top right, rgba(212,175,55,0.05), transparent 400px)' 
-    }}>
-      <div style={{ maxWidth: '500px', width: '100%', textAlign: 'center' }}>
+    <div style={{ backgroundColor: '#050505', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '20px', fontFamily: 'sans-serif', color: '#fff' }}>
+      <div style={{ maxWidth: '420px', width: '100%', textAlign: 'center' }}>
         
-        {/* Logo / Illustration */}
-        <div style={{ marginBottom: '50px' }}>
-          <div style={{ 
-            display: 'inline-block', 
-            backgroundColor: '#000', 
-            padding: '30px', 
-            borderRadius: '40px', 
-            boxShadow: '0 20px 50px rgba(0,0,0,0.3)',
-            border: '1px solid #D4AF37',
-            position: 'relative'
-          }}>
-            <Car size={64} color="#D4AF37" strokeWidth={1} />
-            <div style={{ position: 'absolute', top: '-10px', right: '-10px', backgroundColor: '#D4AF37', borderRadius: '50%', padding: '8px' }}>
-              <Zap size={16} color="#000" fill="#000" />
-            </div>
-          </div>
+        {/* Sketch de voiture stylisé */}
+        <div style={{ marginBottom: '30px' }}>
+          <svg width="180" height="80" viewBox="0 0 24 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 8C3 8 4 3 7 2C10 1 14 1 17 2C20 3 21 8 21 8H22C22.5 8 23 8.5 23 9V11H1V9C1 8.5 1.5 8 2 8H3Z" stroke="#D4AF37" strokeWidth="0.5" />
+            <circle cx="7" cy="10" r="1.5" fill="#111" stroke="#D4AF37" strokeWidth="0.5" />
+            <circle cx="17" cy="10" r="1.5" fill="#111" stroke="#D4AF37" strokeWidth="0.5" />
+            <path d="M5 8L7 4H17L19 8" stroke="#D4AF37" strokeWidth="0.3" strokeDasharray="1 1" />
+          </svg>
         </div>
 
-        <div style={{ marginBottom: '20px' }}>
-          <span style={{ 
-            color: '#D4AF37', 
-            fontSize: '11px', 
-            fontWeight: '900', 
-            letterSpacing: '0.4em', 
-            textTransform: 'uppercase',
-            backgroundColor: 'rgba(212,175,55,0.1)',
-            padding: '8px 20px',
-            borderRadius: '50px'
-          }}>
-            Premium Experience
-          </span>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 16px', backgroundColor: 'rgba(212, 175, 55, 0.1)', border: '1px solid #D4AF37', color: '#D4AF37', fontSize: '10px', fontWeight: '800', letterSpacing: '0.3em', textTransform: 'uppercase', borderRadius: '4px', marginBottom: '20px' }}>
+          <Crown size={12} /> Viize Vision AI
         </div>
 
-        <h1 style={{ fontSize: '75px', fontWeight: '900', color: '#000', letterSpacing: '-0.06em', textTransform: 'uppercase', lineHeight: '0.85', margin: '0 0 30px 0', fontStyle: 'italic' }}>
-          VIIZE<br/><span style={{ color: '#D4AF37' }}>VISION</span>
+        <h1 style={{ fontSize: '56px', fontWeight: '900', letterSpacing: '-0.04em', textTransform: 'uppercase', lineHeight: '0.8', marginBottom: '40px' }}>
+          PRECISION<br/><span style={{ color: '#D4AF37' }}>PARKING</span>
         </h1>
 
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '30px', marginBottom: '50px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#444', fontSize: '13px', fontWeight: '700' }}>
-            <ShieldCheck size={18} color="#D4AF37" /> SÉCURITÉ
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '40px' }}>
+          <div style={{ background: '#111', padding: '20px', borderRadius: '12px', border: '1px solid #222' }}>
+            <Zap size={20} color="#D4AF37" />
+            <div style={{ fontSize: '11px', marginTop: '8px', fontWeight: '600' }}>RÉSERVATION LIVE</div>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#444', fontSize: '13px', fontWeight: '700' }}>
-            <Crown size={18} color="#D4AF37" /> PRESTIGE
+          <div style={{ background: '#111', padding: '20px', borderRadius: '12px', border: '1px solid #222' }}>
+            <ShieldCheck size={20} color="#D4AF37" />
+            <div style={{ fontSize: '11px', marginTop: '8px', fontWeight: '600' }}>ACCÈS SÉCURISÉ</div>
           </div>
         </div>
 
         <a 
           href="/dashboard" 
           style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center', 
-            gap: '15px',
-            width: '100%', 
-            padding: '24px', 
-            backgroundColor: '#000', 
-            color: '#fff', 
-            borderRadius: '24px', 
-            fontWeight: '900', 
-            textTransform: 'uppercase', 
-            letterSpacing: '0.2em', 
-            textDecoration: 'none',
-            boxShadow: '0 25px 50px -12px rgba(212, 175, 55, 0.4)',
-            transition: 'all 0.3s ease'
+            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px',
+            width: '100%', padding: '22px', backgroundColor: '#D4AF37', color: '#000', 
+            borderRadius: '8px', fontWeight: '900', textTransform: 'uppercase', 
+            textDecoration: 'none', transition: '0.2s'
           }}
         >
-          Accéder au Panel <ChevronRight size={20} strokeWidth={3} />
+          Ouvrir le Panel <ChevronRight size={20} />
         </a>
       </div>
     </div>
