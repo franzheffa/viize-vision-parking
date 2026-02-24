@@ -20,16 +20,16 @@ export default function LandingPage() {
         {/* Bouton Noir & Or */}
         <a 
           href="/dashboard" 
-          style={{ display: 'inline-block', width: '100%', padding: '20px', backgroundColor: '#000000', color: '#ffffff', borderRadius: '16px', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.2em', textDecoration: 'none', transition: 'all 0.2s', boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1)' }}
+          style={{ display: 'inline-block', width: '100%', padding: '20px', backgroundColor: '#000000', color: '#ffffff', borderRadius: '16px', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.2em', textDecoration: 'none', transition: 'all 0.2s' }}
         >
           Entrer dans l'interface
         </a>
 
-        {/* Footer */}
+        {/* Footer avec height corrigé */}
         <div style={{ marginTop: '64px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', opacity: 0.3 }}>
-          <div style={{ h: '1px', width: '40px', backgroundColor: '#000' }}></div>
+          <div style={{ height: '1px', width: '40px', backgroundColor: '#000' }}></div>
           <span style={{ fontSize: '10px', fontWeight: '900', textTransform: 'uppercase', color: '#000' }}>Premium Access</span>
-          <div style={{ h: '1px', width: '40px', backgroundColor: '#000' }}></div>
+          <div style={{ height: '1px', width: '40px', backgroundColor: '#000' }}></div>
         </div>
       </div>
     </div>
