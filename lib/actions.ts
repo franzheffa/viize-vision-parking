@@ -1,54 +1,22 @@
-'use server'
-import { prisma } from '@/lib/prisma'
-import { revalidatePath } from 'next/cache'
+import prisma from '@/lib/prisma'
 
-export async function getDashboardData() {
+export async function getDashboardStats() {
   const totalSpots = await prisma.parkingSpot.count()
+
+  // Schema actuel: status est un String, default "AVAILABLE"
+  // On considère "occupé" = tout ce qui n'est pas AVAILABLE
   const occupiedSpots = await prisma.parkingSpot.count({
-    where: { OR: [{ isOccupied: true }, { isReserved: true }] }
+    where: { NOT: { status: 'AVAILABLE' } }
   })
-  
-  const reservations = await prisma.reservation.findMany()
-  
-  // Utilisation de 'any' pour bypasser l'erreur de typage sur le nom du champ de montant
-  const totalRevenue = reservations.reduce((acc, res: any) => {
-    const amount = res.totalPriceCents || res.totalAmountCents || res.amountCents || 0;
-    return acc + amount;
-  }, 0) / 100
-  
-  const occupancyRate = totalSpots > 0 ? (occupiedSpots / totalSpots) * 100 : 0
+
+  const reservations = await prisma.reservation.findMany({
+    orderBy: { startTime: 'desc' }
+  })
 
   return {
-    totalRevenue: totalRevenue.toFixed(2),
-    occupancy: Math.round(occupancyRate),
     totalSpots,
-    occupiedSpots
+    occupiedSpots,
+    availableSpots: Math.max(totalSpots - occupiedSpots, 0),
+    reservations
   }
-}
-
-export async function reserveSpot(spotId: string) {
-  const spot = await prisma.parkingSpot.findUnique({ where: { id: spotId } })
-  if (!spot || spot.isOccupied || spot.isReserved) return
-  
-  await prisma.$transaction([
-    prisma.parkingSpot.update({
-      where: { id: spotId },
-      data: { isReserved: true }
-    }),
-    prisma.reservation.create({
-      data: {
-        spotId,
-        userId: 'demo-user-id', 
-        lotId: spot.lotId,
-        status: 'CONFIRMED',
-        startAt: new Date(),
-        endAt: new Date(Date.now() + 3600000),
-        // On injecte les deux noms possibles pour être sûr à 100%
-        ...( { totalPriceCents: 1500, hourlyRateCents: 1500, platformFeeCents: 0 } as any)
-      }
-    })
-  ])
-  
-  revalidatePath('/reserve')
-  revalidatePath('/dashboard')
 }
