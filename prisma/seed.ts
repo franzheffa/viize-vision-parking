@@ -1,39 +1,41 @@
 import { PrismaClient } from '@prisma/client'
+
 const prisma = new PrismaClient()
 
 async function main() {
-  console.log('--- RESTAURATION DU SYSTÈME ---')
-  
-  // Suppression sécurisée (uniquement ce qui existe)
-  try {
-    await prisma.parkingSpot.deleteMany({})
-    console.log('Anciennes données purgées.')
-  } catch (e) {
-    console.log('Erreur lors de la purge (normal si la table est vide).')
-  }
+  console.log('--- PURGE ---')
+  await prisma.reservation.deleteMany({})
+  await prisma.parkingSpot.deleteMany({})
+
+  console.log('--- INJECTION ---')
 
   const spots = [
-    { number: '101', status: 'AVAILABLE', type: 'STANDARD', price: 15 },
-    { number: '102', status: 'OCCUPIED', type: 'STANDARD', price: 15 },
-    { number: '201', status: 'RESERVED', type: 'PREMIUM', price: 25 },
-    { number: '202', status: 'AVAILABLE', type: 'PREMIUM', price: 25 },
-    { number: '301', status: 'AVAILABLE', type: 'ELECTRIC', price: 20 }
-  ]
+    { number: '101', status: 'AVAILABLE', type: 'STANDARD', price: 15.0 },
+    { number: '102', status: 'AVAILABLE', type: 'STANDARD', price: 15.0 },
+    { number: '103', status: 'AVAILABLE', type: 'STANDARD', price: 15.0 },
+    { number: '104', status: 'AVAILABLE', type: 'EV',       price: 22.0 },
 
-  console.log('Injection des données en cours...')
+    { number: '105', status: 'AVAILABLE', type: 'STANDARD', price: 15.0 },
+    { number: '106', status: 'AVAILABLE', type: 'STANDARD', price: 15.0 },
+    { number: '107', status: 'AVAILABLE', type: 'STANDARD', price: 15.0 },
+    { number: '108', status: 'AVAILABLE', type: 'EV',       price: 22.0 },
+
+    { number: '109', status: 'AVAILABLE', type: 'STANDARD', price: 15.0 },
+    { number: '110', status: 'AVAILABLE', type: 'STANDARD', price: 15.0 },
+    { number: '111', status: 'AVAILABLE', type: 'STANDARD', price: 15.0 },
+    { number: '112', status: 'AVAILABLE', type: 'EV',       price: 22.0 }
+  ] as const
 
   for (const spot of spots) {
-    await prisma.parkingSpot.create({
-      data: spot
-    })
+    await prisma.parkingSpot.create({ data: spot })
   }
 
-  console.log('--- SEED RÉUSSI : 5 PLACES CRÉÉES ---')
+  console.log('✅ Seed terminé.')
 }
 
 main()
   .catch((e) => {
-    console.error('ERREUR CRITIQUE SEED :', e)
+    console.error(e)
     process.exit(1)
   })
   .finally(async () => {
