@@ -3,8 +3,8 @@ import prisma from '@/lib/prisma'
 export async function getDashboardStats() {
   const totalSpots = await prisma.parkingSpot.count()
 
-  // Schema actuel: status est un String, default "AVAILABLE"
-  // On considère "occupé" = tout ce qui n'est pas AVAILABLE
+  // Schema actuel: status String (default "AVAILABLE")
+  // "Occupé" = tout ce qui n'est pas AVAILABLE
   const occupiedSpots = await prisma.parkingSpot.count({
     where: { NOT: { status: 'AVAILABLE' } }
   })
@@ -20,3 +20,6 @@ export async function getDashboardStats() {
     reservations
   }
 }
+
+// Alias rétro-compat : certaines pages importent encore getDashboardData
+export const getDashboardData = getDashboardStats
