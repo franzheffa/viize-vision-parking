@@ -16,9 +16,7 @@ async function main() {
     { number: '101', type: 'STANDARD', status: 'AVAILABLE', price: 15.0 },
     { number: '102', type: 'STANDARD', status: 'AVAILABLE', price: 15.0 },
     { number: '103', type: 'STANDARD', status: 'AVAILABLE', price: 15.0 },
-    { number: '104', type: 'EV',       status: 'AVAILABLE', price: 22.0 },
-    { number: '105', type: 'STANDARD', status: 'AVAILABLE', price: 15.0 },
-    { number: '106', type: 'STANDARD', status: 'AVAILABLE', price: 15.0 }
+    { number: '104', type: 'EV',       status: 'AVAILABLE', price: 22.0 }
   ]
 
   for (const spot of spots) {
