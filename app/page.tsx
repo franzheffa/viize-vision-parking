@@ -1,36 +1,88 @@
+import { Car, ShieldCheck, Zap, ChevronRight, Crown } from 'lucide-react'
+
 export default function LandingPage() {
   return (
-    <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '24px', fontFamily: 'sans-serif' }}>
-      <div style={{ maxWidth: '600px', width: '100%', textAlign: 'center' }}>
+    <div style={{ 
+      backgroundColor: '#ffffff', 
+      minHeight: '100vh', 
+      display: 'flex', 
+      flexDirection: 'column', 
+      alignItems: 'center', 
+      justifyContent: 'center', 
+      padding: '20px', 
+      fontFamily: 'system-ui, sans-serif',
+      backgroundImage: 'radial-gradient(circle at top right, rgba(212,175,55,0.05), transparent 400px)' 
+    }}>
+      <div style={{ maxWidth: '500px', width: '100%', textAlign: 'center' }}>
         
-        {/* Badge Or */}
-        <div style={{ display: 'inline-block', padding: '4px 12px', border: '1px solid #D4AF37', color: '#D4AF37', fontSize: '10px', fontWeight: '900', letterSpacing: '0.3em', textTransform: 'uppercase', borderRadius: '99px', marginBottom: '32px' }}>
-          Smart Vision System
+        {/* Logo / Illustration */}
+        <div style={{ marginBottom: '50px' }}>
+          <div style={{ 
+            display: 'inline-block', 
+            backgroundColor: '#000', 
+            padding: '30px', 
+            borderRadius: '40px', 
+            boxShadow: '0 20px 50px rgba(0,0,0,0.3)',
+            border: '1px solid #D4AF37',
+            position: 'relative'
+          }}>
+            <Car size={64} color="#D4AF37" strokeWidth={1} />
+            <div style={{ position: 'absolute', top: '-10px', right: '-10px', backgroundColor: '#D4AF37', borderRadius: '50%', padding: '8px' }}>
+              <Zap size={16} color="#000" fill="#000" />
+            </div>
+          </div>
         </div>
 
-        {/* Titre Noir Massif */}
-        <h1 style={{ fontSize: 'clamp(3rem, 10vw, 5rem)', fontWeight: '900', color: '#000000', letterSpacing: '-0.05em', textTransform: 'uppercase', lineHeight: '0.9', margin: '0 0 24px 0', fontStyle: 'italic' }}>
-          VIIZE<br/>VISION
+        <div style={{ marginBottom: '20px' }}>
+          <span style={{ 
+            color: '#D4AF37', 
+            fontSize: '11px', 
+            fontWeight: '900', 
+            letterSpacing: '0.4em', 
+            textTransform: 'uppercase',
+            backgroundColor: 'rgba(212,175,55,0.1)',
+            padding: '8px 20px',
+            borderRadius: '50px'
+          }}>
+            Premium Experience
+          </span>
+        </div>
+
+        <h1 style={{ fontSize: '75px', fontWeight: '900', color: '#000', letterSpacing: '-0.06em', textTransform: 'uppercase', lineHeight: '0.85', margin: '0 0 30px 0', fontStyle: 'italic' }}>
+          VIIZE<br/><span style={{ color: '#D4AF37' }}>VISION</span>
         </h1>
 
-        <p style={{ color: '#64748b', fontSize: '18px', fontWeight: '500', marginBottom: '48px' }}>
-          L'excellence de l'IA au service du stationnement urbain.
-        </p>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '30px', marginBottom: '50px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#444', fontSize: '13px', fontWeight: '700' }}>
+            <ShieldCheck size={18} color="#D4AF37" /> SÉCURITÉ
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#444', fontSize: '13px', fontWeight: '700' }}>
+            <Crown size={18} color="#D4AF37" /> PRESTIGE
+          </div>
+        </div>
 
-        {/* Bouton Noir & Or */}
         <a 
           href="/dashboard" 
-          style={{ display: 'inline-block', width: '100%', padding: '20px', backgroundColor: '#000000', color: '#ffffff', borderRadius: '16px', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.2em', textDecoration: 'none', transition: 'all 0.2s' }}
+          style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            gap: '15px',
+            width: '100%', 
+            padding: '24px', 
+            backgroundColor: '#000', 
+            color: '#fff', 
+            borderRadius: '24px', 
+            fontWeight: '900', 
+            textTransform: 'uppercase', 
+            letterSpacing: '0.2em', 
+            textDecoration: 'none',
+            boxShadow: '0 25px 50px -12px rgba(212, 175, 55, 0.4)',
+            transition: 'all 0.3s ease'
+          }}
         >
-          Entrer dans l'interface
+          Accéder au Panel <ChevronRight size={20} strokeWidth={3} />
         </a>
-
-        {/* Footer avec height corrigé */}
-        <div style={{ marginTop: '64px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', opacity: 0.3 }}>
-          <div style={{ height: '1px', width: '40px', backgroundColor: '#000' }}></div>
-          <span style={{ fontSize: '10px', fontWeight: '900', textTransform: 'uppercase', color: '#000' }}>Premium Access</span>
-          <div style={{ height: '1px', width: '40px', backgroundColor: '#000' }}></div>
-        </div>
       </div>
     </div>
   )

@@ -2,36 +2,25 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 async function main() {
-  console.log('🧹 Nettoyage de la base...')
-  // On supprime dans l'ordre pour respecter les contraintes de clés étrangères
-  await prisma.reservation.deleteMany({})
+  console.log('Nettoyage des données...')
   await prisma.parkingSpot.deleteMany({})
-  await prisma.parkingLot.deleteMany({})
 
-  // 1. Créer le Parking
-  const lot = await prisma.parkingLot.create({
-    data: {
-      id: 'default-lot',
-      name: 'Parking Central Viize',
-      address: 'Avenue de la Vision, Paris',
-    },
-  })
+  console.log('Injection des spots (Champs obligatoires inclus)...')
+  const spots = [
+    { number: 'A-101', status: 'AVAILABLE', type: 'STANDARD', price: 15 },
+    { number: 'A-102', status: 'OCCUPIED', type: 'STANDARD', price: 15 },
+    { number: 'B-201', status: 'RESERVED', type: 'PREMIUM', price: 25 },
+    { number: 'B-202', status: 'AVAILABLE', type: 'PREMIUM', price: 25 },
+    { number: 'EV-301', status: 'AVAILABLE', type: 'ELECTRIC', price: 20 }
+  ]
 
-  // 2. Créer 12 places
-  console.log('🌱 Création des 12 places...')
-  const spotsData = Array.from({ length: 12 }, (_, i) => ({
-    label: `P-${i + 1}`,
-    type: 'STANDARD' as any,
-    isOccupied: false,
-    isReserved: false,
-    lotId: lot.id,
-  }))
+  for (const spot of spots) {
+    await prisma.parkingSpot.create({
+      data: spot
+    })
+  }
 
-  await prisma.parkingSpot.createMany({
-    data: spotsData
-  })
-
-  console.log('✅ Base de données prête !')
+  console.log('Seed fini. Matrice synchronisée.')
 }
 
 main()
