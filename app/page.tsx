@@ -1,44 +1,36 @@
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-[#FFFFFF] flex flex-col items-center justify-center p-6 font-sans selection:bg-[#D4AF37] selection:text-white">
-      <div className="max-w-2xl w-full text-center space-y-12">
+    <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '24px', fontFamily: 'sans-serif' }}>
+      <div style={{ maxWidth: '600px', width: '100%', textAlign: 'center' }}>
         
-        {/* Logo / Brand Section */}
-        <div className="space-y-4">
-          <div className="inline-block px-4 py-1 border border-[#D4AF37] text-[#D4AF37] text-[10px] font-black tracking-[0.3em] uppercase rounded-full mb-4">
-            Smart Vision System
-          </div>
-          <h1 className="text-7xl md:text-8xl font-black text-black tracking-tighter uppercase italic leading-[0.8]">
-            VIIZE<br/>VISION
-          </h1>
-          <p className="text-slate-400 text-lg font-medium tracking-tight">
-            L'excellence de l'IA au service du stationnement urbain.
-          </p>
+        {/* Badge Or */}
+        <div style={{ display: 'inline-block', padding: '4px 12px', border: '1px solid #D4AF37', color: '#D4AF37', fontSize: '10px', fontWeight: '900', letterSpacing: '0.3em', textTransform: 'uppercase', borderRadius: '99px', marginBottom: '32px' }}>
+          Smart Vision System
         </div>
 
-        {/* Action Section */}
-        <div className="flex flex-col items-center space-y-6">
-          <a 
-            href="/dashboard" 
-            className="group relative inline-flex items-center justify-center px-12 py-5 bg-black text-white overflow-hidden rounded-full transition-all hover:scale-105 active:scale-95 shadow-2xl"
-          >
-            <span className="relative z-10 font-black uppercase tracking-[0.2em] text-sm">
-              Entrer dans l'interface
-            </span>
-            <div className="absolute inset-0 bg-[#D4AF37] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-          </a>
-          
-          <div className="flex items-center space-x-4 opacity-20">
-            <div className="h-[1px] w-12 bg-black"></div>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-black">Premium Access</span>
-            <div className="h-[1px] w-12 bg-black"></div>
-          </div>
-        </div>
-      </div>
+        {/* Titre Noir Massif */}
+        <h1 style={{ fontSize: 'clamp(3rem, 10vw, 5rem)', fontWeight: '900', color: '#000000', letterSpacing: '-0.05em', textTransform: 'uppercase', lineHeight: '0.9', margin: '0 0 24px 0', fontStyle: 'italic' }}>
+          VIIZE<br/>VISION
+        </h1>
 
-      {/* Footer Branding */}
-      <div className="absolute bottom-10 text-[10px] font-black text-slate-300 uppercase tracking-[0.5em]">
-        © 2026 Viize Vision Parking — All Rights Reserved
+        <p style={{ color: '#64748b', fontSize: '18px', fontWeight: '500', marginBottom: '48px' }}>
+          L'excellence de l'IA au service du stationnement urbain.
+        </p>
+
+        {/* Bouton Noir & Or */}
+        <a 
+          href="/dashboard" 
+          style={{ display: 'inline-block', width: '100%', padding: '20px', backgroundColor: '#000000', color: '#ffffff', borderRadius: '16px', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.2em', textDecoration: 'none', transition: 'all 0.2s', boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1)' }}
+        >
+          Entrer dans l'interface
+        </a>
+
+        {/* Footer */}
+        <div style={{ marginTop: '64px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', opacity: 0.3 }}>
+          <div style={{ h: '1px', width: '40px', backgroundColor: '#000' }}></div>
+          <span style={{ fontSize: '10px', fontWeight: '900', textTransform: 'uppercase', color: '#000' }}>Premium Access</span>
+          <div style={{ h: '1px', width: '40px', backgroundColor: '#000' }}></div>
+        </div>
       </div>
     </div>
   )
