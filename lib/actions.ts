@@ -9,7 +9,9 @@ export async function getDashboardData() {
   })
   
   const reservations = await prisma.reservation.findMany()
-  const totalRevenue = reservations.reduce((acc, res) => acc + res.totalAmount, 0)
+  // On divise par 100 car ton schéma stocke en centimes (Cents)
+  const totalRevenue = reservations.reduce((acc, res) => acc + (res.totalAmountCents || 0), 0) / 100
+  
   const occupancyRate = totalSpots > 0 ? (occupiedSpots / totalSpots) * 100 : 0
 
   return {
@@ -32,8 +34,14 @@ export async function reserveSpot(spotId: string) {
     prisma.reservation.create({
       data: {
         spotId,
-        userEmail: 'demo@viize.io',
-        totalAmount: 15.00 // Prix fixe par défaut pour le MVP
+        userId: 'demo-user-id', // Ajusté selon ton schéma (userId est requis)
+        lotId: spot.lotId,
+        status: 'CONFIRMED',
+        startAt: new Date(),
+        endAt: new Date(Date.now() + 3600000), // +1 heure
+        totalAmountCents: 1500, // 15.00€
+        hourlyRateCents: 1500,
+        platformFeeCents: 0
       }
     })
   ])
