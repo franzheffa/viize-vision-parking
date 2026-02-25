@@ -2,15 +2,12 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(req: NextRequest) {
-  const path = req.nextUrl.pathname;
-  const token = req.cookies.get("viize_session")?.value;
+  const { pathname } = req.nextUrl;
 
-  const isAuth = path.startsWith("/login") || path.startsWith("/api/auth");
-  const isApi = path.startsWith("/api");
-
-  if (!token && !isAuth && !isApi && (path.startsWith("/reserve") || path.startsWith("/reservations") || path.startsWith("/manager"))) {
+  // /login -> /reserve (conducteur)
+  if (pathname === "/login") {
     const url = req.nextUrl.clone();
-    url.pathname = "/login";
+    url.pathname = "/reserve";
     return NextResponse.redirect(url);
   }
 
@@ -18,5 +15,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/reserve", "/reservations", "/manager/:path*"]
+  matcher: ["/login"],
 };

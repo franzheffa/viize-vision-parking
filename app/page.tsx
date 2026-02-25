@@ -2,68 +2,42 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#4B45E6]">
-      <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
-        <div className="flex items-center gap-3">
-          <div className="grid h-10 w-10 place-items-center rounded-2xl bg-white/15 ring-1 ring-white/20">
-            <span className="text-lg text-white">🚗</span>
-          </div>
-          <div className="text-white">
-            <div className="text-sm font-bold tracking-wide">VIIZE</div>
-            <div className="text-[11px] text-white/70 -mt-0.5">Vision Parking</div>
+    <main className="min-h-screen w-full bg-[#4b4fdc] text-white">
+      <div className="mx-auto flex min-h-screen max-w-5xl flex-col items-center justify-center px-6 text-center">
+        <div className="mb-10 flex items-center gap-3">
+          <div className="h-10 w-10 rounded-full bg-white/15" />
+          <div className="text-left">
+            <div className="text-sm font-semibold">VIIZE</div>
+            <div className="text-xs text-white/70">Vision Parking</div>
           </div>
         </div>
 
-        <nav className="flex items-center gap-2">
-          <Link
-            href="/reserve"
-            className="rounded-2xl bg-white/10 px-4 py-2 text-sm font-semibold text-white ring-1 ring-white/20 hover:bg-white/15"
-          >
-            Conducteur
-          </Link>
-          <Link
-            href="/dashboard"
-            className="rounded-2xl bg-white/10 px-4 py-2 text-sm font-semibold text-white ring-1 ring-white/20 hover:bg-white/15"
-          >
-            Manager
-          </Link>
-        </nav>
-      </header>
+        <div className="mb-10 rounded-2xl bg-white/10 px-6 py-5">
+          <div className="mx-auto mb-6 h-12 w-12 rounded-2xl bg-white/10" />
+          <h1 className="text-5xl font-black tracking-tight">VIIZE VISION</h1>
+          <p className="mt-3 text-white/80">L&apos;IA au service du stationnement urbain.</p>
 
-      <main className="mx-auto max-w-6xl px-6 pb-16 pt-10">
-        <div className="mx-auto grid max-w-2xl place-items-center text-center">
-          <div className="grid h-16 w-16 place-items-center rounded-3xl bg-white/15 ring-1 ring-white/20">
-            <span className="text-2xl text-white">🚙</span>
-          </div>
-
-          <h1 className="mt-6 text-5xl font-extrabold tracking-tight text-white">
-            VIIZE VISION
-          </h1>
-          <p className="mt-3 text-lg text-white/80">
-            L'IA au service du stationnement urbain.
-          </p>
-
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               href="/reserve"
-              className="rounded-2xl bg-white px-8 py-4 text-sm font-extrabold tracking-wide text-[#4B45E6] shadow-lg shadow-black/20 hover:opacity-95"
+              className="w-72 rounded-xl bg-white px-6 py-4 text-center text-sm font-extrabold text-[#3b3fd1] shadow-lg"
             >
-              ENTRER DANS L'INTERFACE
+              ENTRER DANS L&apos;INTERFACE
             </Link>
 
             <Link
               href="/dashboard"
-              className="rounded-2xl bg-white/10 px-8 py-4 text-sm font-extrabold tracking-wide text-white ring-1 ring-white/20 hover:bg-white/15"
+              className="w-72 rounded-xl bg-white/10 px-6 py-4 text-center text-sm font-extrabold text-white ring-1 ring-white/20"
             >
               OPERATIONS HUB
             </Link>
           </div>
 
-          <div className="mt-10 text-xs text-white/60">
-            Demo UI • Réservation • Pricing dynamique IA (live) • USD
+          <div className="mt-8 text-xs text-white/60">
+            Demo UI · Réservation · Pricing dynamique IA (live) · USD
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }
