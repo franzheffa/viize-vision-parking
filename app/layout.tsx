@@ -1,12 +1,15 @@
-export const metadata = {
+import type { Metadata } from "next";
+import "./globals.css";
+
+export const metadata: Metadata = {
   title: "Viize Vision Parking",
-  description: "Dynamic parking reservation + EV charging + revenue sharing"
+  description: "Copilote IA du stationnement (réservation, pricing, allocation, dashboard).",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body style={{ margin: 0, fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, sans-serif" }}>
+    <html lang="fr">
+      <body className="min-h-screen bg-white text-slate-900 antialiased">
         {children}
       </body>
     </html>

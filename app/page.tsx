@@ -1,51 +1,69 @@
-import { ShieldCheck, Zap, ChevronRight, Crown, Car } from 'lucide-react'
+import Link from "next/link";
 
-export default function LandingPage() {
+export default function Home() {
   return (
-    <div style={{ backgroundColor: '#050505', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '20px', fontFamily: 'sans-serif', color: '#fff' }}>
-      <div style={{ maxWidth: '420px', width: '100%', textAlign: 'center' }}>
-        
-        {/* Sketch de voiture stylisé */}
-        <div style={{ marginBottom: '30px' }}>
-          <svg width="180" height="80" viewBox="0 0 24 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 8C3 8 4 3 7 2C10 1 14 1 17 2C20 3 21 8 21 8H22C22.5 8 23 8.5 23 9V11H1V9C1 8.5 1.5 8 2 8H3Z" stroke="#D4AF37" strokeWidth="0.5" />
-            <circle cx="7" cy="10" r="1.5" fill="#111" stroke="#D4AF37" strokeWidth="0.5" />
-            <circle cx="17" cy="10" r="1.5" fill="#111" stroke="#D4AF37" strokeWidth="0.5" />
-            <path d="M5 8L7 4H17L19 8" stroke="#D4AF37" strokeWidth="0.3" strokeDasharray="1 1" />
-          </svg>
-        </div>
-
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 16px', backgroundColor: 'rgba(212, 175, 55, 0.1)', border: '1px solid #D4AF37', color: '#D4AF37', fontSize: '10px', fontWeight: '800', letterSpacing: '0.3em', textTransform: 'uppercase', borderRadius: '4px', marginBottom: '20px' }}>
-          <Crown size={12} /> Viize Vision AI
-        </div>
-
-        <h1 style={{ fontSize: '56px', fontWeight: '900', letterSpacing: '-0.04em', textTransform: 'uppercase', lineHeight: '0.8', marginBottom: '40px' }}>
-          PRECISION<br/><span style={{ color: '#D4AF37' }}>PARKING</span>
-        </h1>
-
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '40px' }}>
-          <div style={{ background: '#111', padding: '20px', borderRadius: '12px', border: '1px solid #222' }}>
-            <Zap size={20} color="#D4AF37" />
-            <div style={{ fontSize: '11px', marginTop: '8px', fontWeight: '600' }}>RÉSERVATION LIVE</div>
+    <div className="min-h-screen bg-[#4B45E6]">
+      <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
+        <div className="flex items-center gap-3">
+          <div className="grid h-10 w-10 place-items-center rounded-2xl bg-white/15 ring-1 ring-white/20">
+            <span className="text-lg text-white">🚗</span>
           </div>
-          <div style={{ background: '#111', padding: '20px', borderRadius: '12px', border: '1px solid #222' }}>
-            <ShieldCheck size={20} color="#D4AF37" />
-            <div style={{ fontSize: '11px', marginTop: '8px', fontWeight: '600' }}>ACCÈS SÉCURISÉ</div>
+          <div className="text-white">
+            <div className="text-sm font-bold tracking-wide">VIIZE</div>
+            <div className="text-[11px] text-white/70 -mt-0.5">Vision Parking</div>
           </div>
         </div>
 
-        <a 
-          href="/dashboard" 
-          style={{ 
-            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px',
-            width: '100%', padding: '22px', backgroundColor: '#D4AF37', color: '#000', 
-            borderRadius: '8px', fontWeight: '900', textTransform: 'uppercase', 
-            textDecoration: 'none', transition: '0.2s'
-          }}
-        >
-          Ouvrir le Panel <ChevronRight size={20} />
-        </a>
-      </div>
+        <nav className="flex items-center gap-2">
+          <Link
+            href="/reserve"
+            className="rounded-2xl bg-white/10 px-4 py-2 text-sm font-semibold text-white ring-1 ring-white/20 hover:bg-white/15"
+          >
+            Conducteur
+          </Link>
+          <Link
+            href="/dashboard"
+            className="rounded-2xl bg-white/10 px-4 py-2 text-sm font-semibold text-white ring-1 ring-white/20 hover:bg-white/15"
+          >
+            Manager
+          </Link>
+        </nav>
+      </header>
+
+      <main className="mx-auto max-w-6xl px-6 pb-16 pt-10">
+        <div className="mx-auto grid max-w-2xl place-items-center text-center">
+          <div className="grid h-16 w-16 place-items-center rounded-3xl bg-white/15 ring-1 ring-white/20">
+            <span className="text-2xl text-white">🚙</span>
+          </div>
+
+          <h1 className="mt-6 text-5xl font-extrabold tracking-tight text-white">
+            VIIZE VISION
+          </h1>
+          <p className="mt-3 text-lg text-white/80">
+            L'IA au service du stationnement urbain.
+          </p>
+
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <Link
+              href="/reserve"
+              className="rounded-2xl bg-white px-8 py-4 text-sm font-extrabold tracking-wide text-[#4B45E6] shadow-lg shadow-black/20 hover:opacity-95"
+            >
+              ENTRER DANS L'INTERFACE
+            </Link>
+
+            <Link
+              href="/dashboard"
+              className="rounded-2xl bg-white/10 px-8 py-4 text-sm font-extrabold tracking-wide text-white ring-1 ring-white/20 hover:bg-white/15"
+            >
+              OPERATIONS HUB
+            </Link>
+          </div>
+
+          <div className="mt-10 text-xs text-white/60">
+            Demo UI • Réservation • Pricing dynamique IA (live) • USD
+          </div>
+        </div>
+      </main>
     </div>
-  )
+  );
 }
