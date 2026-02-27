@@ -14,7 +14,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Buttertech <span className="text-slate-400 font-medium">powered by</span>{" "}
           <span className="font-extrabold text-slate-900">Interac</span>
         </div>
-
         {children}
       </body>
     </html>
